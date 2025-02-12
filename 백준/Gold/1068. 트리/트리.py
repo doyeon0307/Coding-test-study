@@ -17,20 +17,15 @@ tree[delete] = -2
 delete_node(delete)
 
 # 리프 노드 개수
+answer = 0
+for i, t in enumerate(tree):
+  if t > -2:
+    has_child = False
+    for n in tree:
+      if i == n:
+        has_child = True
+        break
+    if not has_child:
+      answer += 1
 
-# 루트만 남을 경우 (예외)
-if sum(tree) == -1 + (-2) * (N - 1):
-  print(1)
-else:
-  answer = 0
-  for i, t in enumerate(tree):
-    if t > -2:
-      has_child = False
-      for n in tree:
-        if i == n:
-          has_child = True
-          break
-      if not has_child:
-        answer += 1
-
-  print(answer)
+print(answer)
