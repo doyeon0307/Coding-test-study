@@ -1,7 +1,7 @@
 from collections import deque
 
 def solution(n, computers):
-    answer = n
+    answer = 0
 
     visited = [False] * n
     queue = deque()
@@ -12,17 +12,14 @@ def solution(n, computers):
 
         queue.append(s)
         visited[s] = True
-        count = 1
+        answer += 1
 
         while queue:
             c = queue.popleft()
 
             for i in range(n):
                 if not visited[i] and (computers[c][i] or computers[i][c]):
-                    count += 1
                     queue.append(i)
                     visited[i] = True
-
-        answer = answer - count + 1
     
     return answer
