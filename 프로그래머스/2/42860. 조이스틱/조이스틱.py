@@ -1,24 +1,20 @@
 def solution(name):
     answer = 0
     
-    n = len(name)
+    size = len(name)
     
-    # 상하 최소 움직임 수
-    for c in name:
-        answer += min(ord(c) - 65, 90 - ord(c) + 1)
+    for n in name:
+        answer += min(ord(n) - ord('A'), ord('Z') - ord(n) + 1)
     
-    # 좌우 최소 움직임 수
-    move = n - 1
-    
-    for i in range(n):
+    move = size - 1
+    for i in range(size):
         next_i = i + 1
-        while next_i < n and name[next_i] == "A":
-            next_i += 1
-        
-        move = min(
-            move, 
-            i * 2 + n - next_i,
-            (n - next_i) * 2 + i
-        )
+        while next_i < size:
+            if name[next_i] == 'A':
+                next_i += 1
+            else:
+                break
+
+        move = min(move, i * 2 + size - next_i, (size - next_i) * 2 + i)
         
     return answer + move
