@@ -12,11 +12,8 @@ def solution(n, wires):
         con[a].remove(b)
         con[b].remove(a)
 
-        stack = []
-        tree = set()
-        
-        stack.append(a)
-        tree.add(a)
+        stack = [a]
+        tree = {a}
            
         while stack:
             l = stack.pop()
