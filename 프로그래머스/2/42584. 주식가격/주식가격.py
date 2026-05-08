@@ -9,5 +9,3 @@ def solution(prices):
         stack.append([i, p])
     
     return answer
-
-# 100 102 103 50 106 107 50
