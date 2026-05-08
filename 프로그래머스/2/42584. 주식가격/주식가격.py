@@ -1,0 +1,13 @@
+def solution(prices):
+    answer = [len(prices) - i - 1 for i in range(len(prices))]
+    stack = []
+    
+    for i, p in enumerate(prices):
+        while stack and p < stack[-1][1]:
+            idx = stack.pop()[0]
+            answer[idx] = i - idx
+        stack.append([i, p])
+    
+    return answer
+
+# 100 102 103 50 106 107 50
