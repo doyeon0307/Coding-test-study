@@ -4,15 +4,13 @@ def solution(participant, completion):
     name = {}
     
     for p in participant:
-        if p in name:
-            name[p] += 1
-        else:
-            name[p] = 1
+        name[p] = name.get(p, 0) + 1
     
     for c in completion:
-        if c in name:
-            name[c] -= 1
-            if name[c] <= 0:
-                del name[c]
+        name[c] -= 1
+        
+    for i in name.items():
+        if i[1] > 0:
+            return i[0]
     
-    return list(name.keys())[0]
+    return answer
