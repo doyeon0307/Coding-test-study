@@ -1,17 +1,19 @@
-def solution(s):
-    answer = True
+def solution(s): 
+    stack = []
     
-    cnt = 0
-    
-    for a in s:
-        if a == "(":
-            cnt += 1
+    for c in s:
+        if c == '(':
+            stack.append(c)
         else:
-            if cnt > 0:
-                cnt -= 1
+            if stack and stack[-1] == '(':
+                stack.pop()
             else:
-                answer = False
+                stack.append(c)
 
-    if not answer:
-        return answer
-    return cnt == 0
+    for c in s:
+        if c == ')' and stack and stack[-1] == '(':
+            stack.pop()
+        else:
+            stack.append(c)
+            
+    return len(stack) == 0
