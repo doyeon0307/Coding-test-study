@@ -8,17 +8,17 @@ def solution(n, computers):
         if v[c]:
             continue
         
-        dfs = deque([c])
+        bfs = deque([c])
 
-        while dfs:
-            l = dfs.popleft()
+        while bfs:
+            l = bfs.popleft()
             if not v[l]:
                 v[l] = 1
                 near = computers[l]
                 for i, n in enumerate(near):
                     if n and not v[i]:
-                        dfs.append(i)
+                        bfs.append(i)
         
-        answer += 1    
+        answer += 1
     
     return answer
