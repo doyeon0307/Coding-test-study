@@ -2,24 +2,23 @@ from collections import deque
 
 def solution(n, computers):
     answer = 0
-
-    visited = [False] * n
-    queue = deque()
+    v = [0] * n
     
-    for s in range(n):
-        if visited[s]:
+    for c in range(n):
+        if v[c]:
             continue
+        
+        dfs = deque([c])
 
-        queue.append(s)
-        visited[s] = True
-        answer += 1
-
-        while queue:
-            c = queue.popleft()
-
-            for i in range(n):
-                if not visited[i] and (computers[c][i] or computers[i][c]):
-                    queue.append(i)
-                    visited[i] = True
+        while dfs:
+            l = dfs.popleft()
+            if not v[l]:
+                v[l] = 1
+                near = computers[l]
+                for i, n in enumerate(near):
+                    if n and not v[i]:
+                        dfs.append(i)
+        
+        answer += 1    
     
     return answer
