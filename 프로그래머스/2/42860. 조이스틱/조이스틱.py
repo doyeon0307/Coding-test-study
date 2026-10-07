@@ -15,15 +15,6 @@ def solution(name):
         
         horizontal = min(horizontal, i * 2 + len(name) - j, (len(name) - i) * 2 + k)
         
-
-#         (len(name) - i) * 2 + i - 1
-        
-#         i = 7
-#         j = 7
-#         len(name) = 8
-#         01234567
-#         FFFFAAAF
-        
     for s in name:
         vertical += min(ord(s) - ord('A'), ord('Z') - ord(s) + 1)
     
