@@ -1,20 +1,30 @@
 def solution(name):
     answer = 0
     
-    size = len(name)
-    
-    for n in name:
-        answer += min(ord(n) - ord('A'), ord('Z') - ord(n) + 1)
-    
-    move = size - 1
-    for i in range(size):
-        next_i = i + 1
-        while next_i < size:
-            if name[next_i] == 'A':
-                next_i += 1
-            else:
-                break
+    horizontal = 99
+    vertical = 0
 
-        move = min(move, i * 2 + size - next_i, (size - next_i) * 2 + i)
+    for i in range(len(name) + 1):
+        j = i + 1
+        while j < len(name) and name[j] == 'A':
+            j += 1
+                
+        k = i - 1
+        while k > 0 and name[k] == 'A':
+            k -= 1
         
-    return answer + move
+        horizontal = min(horizontal, i * 2 + len(name) - j, (len(name) - i) * 2 + k)
+        
+
+#         (len(name) - i) * 2 + i - 1
+        
+#         i = 7
+#         j = 7
+#         len(name) = 8
+#         01234567
+#         FFFFAAAF
+        
+    for s in name:
+        vertical += min(ord(s) - ord('A'), ord('Z') - ord(s) + 1)
+    
+    return horizontal + vertical
