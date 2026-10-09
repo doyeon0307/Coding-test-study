@@ -1,15 +1,12 @@
 def solution(people, limit):
-    answer = 0
+    answer = len(people)
     
-    people.sort()
+    minimum = len(people) - 1
+    people.sort(reverse = True)
     
-    min_idx = 0
-    max_idx = len(people) - 1
-    
-    while min_idx <= max_idx:
-        answer += 1
-        if people[max_idx] + people[min_idx] <= limit:
-            min_idx += 1
-        max_idx -= 1
+    for i, p in enumerate(people):
+        if minimum > i and p + people[minimum] <= limit:
+            minimum -= 1
+            answer -= 1
     
     return answer
