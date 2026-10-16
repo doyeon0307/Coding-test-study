@@ -1,12 +1,7 @@
 class Solution {
     public boolean is_yellow(int t, int[] s) {
-        for (int i = s[0] + 1; i < s[0] + s[1] + 1; i++) {
-            if ((t - i) % (s[0] + s[1] + s[2]) == 0) {
-                return true;
-            }
-        }
-        
-        return false;
+        int pos = t % (s[0] + s[1] + s[2]);
+        return pos >= s[0] + 1 && pos <= s[0] + s[1];
     }
     
     public int gcd(int x, int y) {
@@ -25,7 +20,7 @@ class Solution {
             m = m / gcd(m, p) * p;
         }
         
-        for (int x = 0; x <= m; x++) {
+        for (int x = 0; x < m / a; x++) {
             int start = a * x + b;
             int end = a * x + c;
             
