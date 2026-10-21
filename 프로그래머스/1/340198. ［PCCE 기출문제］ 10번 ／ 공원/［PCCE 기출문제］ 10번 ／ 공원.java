@@ -25,7 +25,7 @@ class Solution {
                         if (can_expand) { s++; }
                         else { break; }
                     }
-                    max_size = max_size < s ? s : max_size;
+                    max_size = Math.max(s, max_size);
                 }
             }
         }
